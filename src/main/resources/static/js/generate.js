@@ -43,7 +43,7 @@ list.createdCallback = function() {
 	crUl.append(fragment);
 }
 
-let listComponent = document.registerElemnt("list-component",{
+let listComponent = document.registerElement("list-component",{
 	prototype: list
 });
 
