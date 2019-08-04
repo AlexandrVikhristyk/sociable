@@ -3,6 +3,8 @@
 	padding: 0;
 }
 
-body {
-	background: red;
+.form {
+	width: 60%;
+    margin: auto;
+    padding-top: 50px;
 }
