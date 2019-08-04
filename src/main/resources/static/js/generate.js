@@ -41,6 +41,7 @@ list.createdCallback = function() {
 		fragment.append(crI);	
 	}
 	crUl.append(fragment);
+	this.innerHTML = crUl;
 }
 
 let listComponent = document.registerElement("list-component",{
