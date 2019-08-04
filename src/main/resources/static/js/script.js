@@ -6,12 +6,19 @@
 
 function getData(from) {
 	let xhr = new XMLHttpRequest();
-	xhr.open("GET","from", false);
+	xhr.open("GET", from, false);
 
-	if(xhr.status == 200 && xhr.readyState == 4) {
-		let value = JSON.parse(xhr.responseText);
-		console.log(value);
-	};
+	xhr.setRequestHeader('Content-Type', 'application/json');
+
+	xhr.onload = function() {
+		if(xhr.status == 200) {
+			let value = JSON.parse(xhr.response);
+			console.log(value);
+		} else{
+			alert( 'Ошибка: ' + xhr.status);
+		}
+	}
+
 	xhr.onerror = function() {
 		alert("Request failed");
 	};
