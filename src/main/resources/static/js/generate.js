@@ -44,7 +44,7 @@ list.createdCallback = function() {
 }
 
 let listComponent = document.registerElemnt("list-component",{
-	prototype: list;
+	prototype: list
 });
 
 
