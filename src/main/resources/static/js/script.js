@@ -1,6 +1,6 @@
 (function startApp() {
 	setTimeout(() => {
-		getData("localhost:8080/message");
+		getData("http://localhost:8080/message");
 	}, 2000);
 })();
 
