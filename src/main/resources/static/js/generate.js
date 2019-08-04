@@ -1,6 +1,6 @@
 (function() {
 
-let showList;
+let showList = [];
 
 (function startApp() {
 	setTimeout(() => {
@@ -35,9 +35,9 @@ list.createdCallback = function() {
 	let crUl = document.createElement("ul").classList.add("list_wrapper");
 	let fragment = new DocumentFragment();
 
-	for(let i = 0; i > showList.length; i++) {
+	for(let i = 0; i <= showList.length; i++) {
 		let crI = document.createElement("li").classList.add("list_wrapper__item");
-		crI.innerHTML = `Id - ${showList[i][id]} | Text - ${showList[i][text]}`;
+		crI.innerHTML = `Id - ${showList[i]['id']} | Text - ${showList[i]['text']} | Date - ${showList[i]['creationDate']}`;
 		fragment.append(crI);	
 	}
 	crUl.append(fragment);
