@@ -108,7 +108,7 @@ let listComponent = document.registerElement("list-component",{
 	prototype: list
 });
 
-function deleteProjectFromBase(target) {
+window.deleteProjectFromBase = function(target) {
 	// let xhr = new XMLHttpRequest();
 
 	target.parentNode.remove();
