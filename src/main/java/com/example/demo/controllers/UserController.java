@@ -1,11 +1,9 @@
 package com.example.demo.controllers;
 
 import com.example.demo.Roles;
+import com.example.demo.domain.CustomUser;
 import com.example.demo.services.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("user")
@@ -16,14 +14,19 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping("/registration")
+    public String addNew(){
+        return "templates/index.html";
+    }
+
     @PostMapping("/registration")
-    public String addNewUser(@RequestParam String username, @RequestParam String email,
-                          @RequestParam String hashPass) {
-        if(userService.addUser(username,hashPass,email, Roles.USER)) {
-            return "templates/index.html";
-        }
-        else
-            return "templates/index.html";
+    public void addNewUser(@RequestBody CustomUser user) {
+        System.out.println("User name - " + user.getUsername());
+        System.out.println("Email - " + user.getEmail());
+        System.out.println("Role - " + user.getRole());
+        System.out.println("Id - " + user.getId());
+        System.out.println("Password - " + user.getHashPass());
+        userService.addUser(user.getUsername(), user.getHashPass(), user.getEmail(), Roles.USER);
     }
 
     @PostMapping("/account")

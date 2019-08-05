@@ -19,27 +19,32 @@
 			xhr.send(json);
 		}
 		return false;
-	}
+	};
 
 
 	let formRegist = document.forms.registerForm;
-	let valLogin = formRegist.elements.log;
-	let valPassword = formRegist.elements.pas;
+	let valLogin = formRegist.elements.username;
+	let valPassword = formRegist.elements.hashPass;
+	let varEmail = formRegist.elements.email;
 
 	formRegist.onsubmit = function() {
 		if(!valLogin.value || !valPassword.value) {
 			alert("Error");
 		} else {
-			// let obj = ({
-			// 	userName: valLogin.value,
-			// 	hashPass: valPassword.value
-			// });
-			// let json = JSON.stringify(obj);
+			let obj = ({
+				// id: null,
+				username: valLogin.value,
+				hashPass: valPassword.value,
+				email: varEmail.value,
+				// role: null,
+				// lastVisit: null
+			});
+			let json = JSON.stringify(obj);
 			let xhr = new XMLHttpRequest();
-			console.log(valLogin.value + valPassword.value);
-			xhr.open("POST", "http://localhost:8080/user");
+			console.log(valLogin.value + " " + valPassword.value + " " + varEmail.value);
+			xhr.open("POST", "http://localhost:8080/user/registration");
 			xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-			xhr.send(valLogin.value + valPassword.value);
+			xhr.send(json);
 		}
 		return false;
 	}
