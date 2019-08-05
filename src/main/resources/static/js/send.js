@@ -5,9 +5,13 @@
 	formComponent.createdCallback = function() {
 
 	let formReg = document.createElement("form");
-	let forTitle = document.createElement("p");
-	forTitle.innerHTML = "Form Registrtion";
-
+	// let forTitle = document.createElement("p");
+	// forTitle.innerHTML = "Form Registrtion";
+	let objAttribute = [
+	{"type": "name", "name": "username", "placeholder": "Username"},
+	{"type": "password", "name": "hashPass", "placeholder": "Password"},
+	{"type": "email", "name": "email", "placeholder": "Example@gmail.com"}
+	]
 	let fragment = new DocumentFragment();
 		for (let i = 0; i < 4; i++) {
 			let crInput = document.createElement("input");
@@ -29,8 +33,7 @@
 			fragment.append(crInput);
 		}
 		formReg.append(fragment);
-		formReg.setAttribute("name", "registerForm");
-		// form.insertBefore(forTitle, crInput[0]);	
+		formReg.setAttribute("name", "registerForm");	
 		this.append(formReg);
 
 	let formRegist = document.forms.registerForm;
