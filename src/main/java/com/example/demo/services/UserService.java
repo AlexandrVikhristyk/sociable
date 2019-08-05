@@ -31,7 +31,26 @@ public class UserService {
     @Transactional
     public void updateUser(String username, String email){
         CustomUser userFromDb = userRepos.findByUsername(username);
-        userFromDb.setEmail(email);
+        if(!userFromDb.getEmail().equals(email)) {
+            userFromDb.setEmail(email);
+        }
+        if(!userFromDb.getUsername().equals(username)) {
+            userFromDb.setUsername(username);
+        }
         userRepos.save(userFromDb);
+    }
+
+    @Transactional
+    public boolean loginOfUser(String username, String hashPass) {
+        if(userRepos.existsByUsername(username)) {
+            CustomUser user = userRepos.findByUsername(username);
+            if(user.getUsername().equals(username) && user.getHashPass().equals(hashPass)) {
+                return true;
+            }
+            else
+                return false;
+        }
+        else
+            return false;
     }
 }
