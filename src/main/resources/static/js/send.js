@@ -4,52 +4,52 @@
 
 	formComponent.createdCallback = function() {
 
-	let form = document.createElement("form");
+		let form = document.createElement("form");
 
-	let fragment = new DocumentFragment();
-		for (let i = 0; i < 4; i++) {
-			let crInput = document.createElement("input");
-			if(i == 0) {
-				crInput.setAttribute("type", "name");
-				crInput.setAttribute("name", "username");
-			} else if(i == 1) {
-				crInput.setAttribute("type", "password");
-				crInput.setAttribute("name", "hashPass");
-			} else if(i == 2) {
-				crInput.setAttribute("type", "email");
-				crInput.setAttribute("nmae", "email");
-			} else {
-				crInput.setAttribute("type", "submit");
+		let fragment = new DocumentFragment();
+			for (let i = 0; i < 4; i++) {
+				let crInput = document.createElement("input");
+				if(i == 0) {
+					crInput.setAttribute("type", "name");
+					crInput.setAttribute("name", "username");
+				} else if(i == 1) {
+					crInput.setAttribute("type", "password");
+					crInput.setAttribute("name", "hashPass");
+				} else if(i == 2) {
+					crInput.setAttribute("type", "email");
+					crInput.setAttribute("nmae", "email");
+				} else {
+					crInput.setAttribute("type", "submit");
+				}
+				fragment.append(crInput);
 			}
-			fragment.append(crInput);
-		}
-		form.append(fragment);
-		form.setAttribute("name", "registerForm");
-		this.append(form);
+			form.append(fragment);
+			form.setAttribute("name", "registerForm");
+			this.append(form);
 
-	let formRegist = document.forms.registerForm;
-	let valLogin = formRegist.elements.username;
-	let valPassword = formRegist.elements.hashPass;
-	let valEmail = formRegist.elements.email;
+		let formRegist = document.forms.registerForm;
+		let valLogin = formRegist.elements.username;
+		let valPassword = formRegist.elements.hashPass;
+		let valEmail = formRegist.elements.email;
 
-	formRegist.onsubmit = function() {
-		if(!valLogin.value || !valPassword.value || !valEmail) {
-			alert("Error");
-		} else {
-			let obj = ({
-				username: valLogin.value,
-				hashPass: valPassword.value,
-				email: valEmail.value
-			});
-			let json = JSON.stringify(obj);
-			let xhr = new XMLHttpRequest();
-			console.log(valLogin.value + " " + valPassword.value + " " + valEmail.value);
-			xhr.open("POST", "http://localhost:8080/user/registration");
-			xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-			xhr.send(json);
+		formRegist.onsubmit = function() {
+			if(!valLogin.value || !valPassword.value || !valEmail) {
+				alert("Error");
+			} else {
+				let obj = ({
+					username: valLogin.value,
+					hashPass: valPassword.value,
+					email: valEmail.value
+				});
+				let json = JSON.stringify(obj);
+				let xhr = new XMLHttpRequest();
+				console.log(valLogin.value + " " + valPassword.value + " " + valEmail.value);
+				xhr.open("POST", "http://localhost:8080/user/registration");
+				xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+				xhr.send(json);
+			}
+			return false;
 		}
-		return false;
-	}
 	}
 
 	let formComponents = document.registerElement("form-component",{
@@ -74,6 +74,10 @@
 			xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 			xhr.send(json);
 		}
+
+		let wrapperComp = document.getElementById("list-component__wrapper");
+		wrapperComp.removeChild(listComponent);
+
 		return false;
 	};
 
