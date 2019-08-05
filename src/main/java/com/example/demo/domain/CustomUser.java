@@ -15,8 +15,15 @@ public class CustomUser {
     private String username;
     private String hashPass;
     private String email;
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Roles role;
     @Column(updatable = false)
     private LocalDateTime lastVisit;
+
+    public CustomUser(String username, String hashPass, String email, Roles role) {
+        this.username = username;
+        this.hashPass = hashPass;
+        this.email = email;
+        this.role = role;
+    }
 }
