@@ -14,8 +14,24 @@ list-component {
   width: 30%;
   margin-left: 20px;
 }
-list-component li {
+list-component ul {
   padding: 10px;
+}
+list-component ul li {
+  margin-top: 10px;
+}
+list-component ul li button {
+  margin-left: 10px;
+  border: 0;
+  padding: 5px;
+  border-radius: 4px;
+  color: white;
+}
+list-component ul li button:first-child {
+  background-color: #1de9b6;
+}
+list-component ul li button:last-child {
+  background-color: #f44336;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -34,8 +34,22 @@ list.createdCallback = function() {
 
 	for(let i = 0; i < showList.length; i++) {
 		let crI = document.createElement("li");
+
+		/////////////////////////////////////////
+	
+		let buttonDelete = document.createElement("button");
+		let buttonUpdate = document.createElement("button");
+		buttonDelete.append(document.createTextNode("Delete"));
+		buttonUpdate.append(document.createTextNode("Update"));
+		crI.append(document.createTextNode(`${showList[i].id} - ${showList[i].text}`));
+		crI.append(buttonUpdate);
+		crI.append(buttonDelete);
+
+		/////////////////////////////////////////
+
+
 		crI.classList.add("list-component__wrapper__item");
-		crI.innerHTML = `<i>${showList[i].id}</i> - ${showList[i].text}`;
+		// crI.innerHTML = `<i>${showList[i].id}</i> - ${showList[i].text}`;
 		fragment.append(crI);
 	}
 	crUl.append(fragment);
