@@ -61,7 +61,7 @@ list.createdCallback = function() {
 	function actnDel(target) {
 		return function() {
 			target.addEventListener("click", event => {
-				deleteProjectFromBase(event.target.dataset.stuffIdDelete);
+				deleteProjectFromBase(event.target);
 			});
 		}
 	}
@@ -108,10 +108,12 @@ let listComponent = document.registerElement("list-component",{
 	prototype: list
 });
 
-function deleteProjectFromBase(id) {
+function deleteProjectFromBase(target) {
 	// let xhr = new XMLHttpRequest();
+
+	target.parentNode.remove();
 	
-	getData("DELETE", `http://localhost:8080/message/${id}`).then(
+	getData("DELETE", `http://localhost:8080/message/${target.dataset.stuffIdDelete}`).then(
 		result => {
 			alert(result);
 		},
@@ -120,9 +122,6 @@ function deleteProjectFromBase(id) {
 		}
 	)
 
-	let wrapperComp = document.getElementById("list-component__wrapper");
-	wrapperComp.removeChild(listComponent);
-	wrapperComp.append(listComponent);
 
 	// list.createdCallback();
 
