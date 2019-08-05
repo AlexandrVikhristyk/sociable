@@ -19,6 +19,8 @@ list-component ul {
 }
 list-component ul li {
   margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 list-component ul li button {
   margin-left: 10px;
@@ -29,6 +31,7 @@ list-component ul li button {
 }
 list-component ul li button:first-child {
   background-color: #1de9b6;
+  margin-left: 350px;
 }
 list-component ul li button:last-child {
   background-color: #f44336;
