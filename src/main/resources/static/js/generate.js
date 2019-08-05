@@ -46,7 +46,7 @@ function getData(method, from){
 
 getData("GET", "http://localhost:8080/message").then(
 	result => {
-		alert(result);
+		console.log(result);
 	},
 	error => {
 		alert(error);
@@ -119,6 +119,17 @@ function deleteProjectFromBase(id) {
 			alert(error);
 		}
 	)
+
+	setTimeout(() => {
+		getData("GET", "http://localhost:8080/message").then(
+			result => {
+				alert(result);
+			},
+			error => {
+				alert(error);
+			}
+		)
+	}, 1000);
 }
 
 function updateProjectFromBase() {
