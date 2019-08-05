@@ -40,7 +40,7 @@ list.createdCallback = function() {
 	}
 	crUl.append(fragment);
 	this.append(crUl);
-}
+};
 
 let listComponent = document.registerElement("list-component",{
 	prototype: list

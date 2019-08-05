@@ -35,6 +35,9 @@ public class MessageController {
 
     @PostMapping
     public Message create(@RequestBody Message message) {
+        System.out.println(message);
+//        Message message1 = new Message();
+//        message1.setText(message);
         message.setCreationDate(LocalDateTime.now());
         return messageRepos.save(message);
     }
