@@ -1,7 +1,63 @@
 (function () {
+
+	let formComponent = Object.create(HTMLElement.prototype);
+
+	formComponent.createdCallback = function() {
+
+	let form = document.createElement("form");
+
+	let fragment = new DocumentFragment();
+		for (let i = 0; i < 4; i++) {
+			let crInput = document.createElement("input");
+			if(i == 0) {
+				crInput.setAttribute("type", "name");
+				crInput.setAttribute("name", "username");
+			} else if(i == 1) {
+				crInput.setAttribute("type", "password");
+				crInput.setAttribute("name", "hashPass");
+			} else if(i == 2) {
+				crInput.setAttribute("type", "email");
+				crInput.setAttribute("nmae", "email");
+			} else {
+				crInput.setAttribute("type", "submit");
+			}
+			fragment.append(crInput);
+		}
+		form.append(fragment);
+		form.setAttribute("name", "registerForm");
+		this.append(form);
+
+	let formRegist = document.forms.registerForm;
+	let valLogin = formRegist.elements.username;
+	let valPassword = formRegist.elements.hashPass;
+	let valEmail = formRegist.elements.email;
+
+	formRegist.onsubmit = function() {
+		if(!valLogin.value || !valPassword.value || !valEmail) {
+			alert("Error");
+		} else {
+			let obj = ({
+				username: valLogin.value,
+				hashPass: valPassword.value,
+				email: valEmail.value
+			});
+			let json = JSON.stringify(obj);
+			let xhr = new XMLHttpRequest();
+			console.log(valLogin.value + " " + valPassword.value + " " + valEmail.value);
+			xhr.open("POST", "http://localhost:8080/user/registration");
+			xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+			xhr.send(json);
+		}
+		return false;
+	}
+	}
+
+	let formComponents = document.registerElement("form-component",{
+		prototype: formComponent
+	});
+
 	let form = document.forms.ourForm;
 	let valInput = form.elements.val;
-
 
 	form.onsubmit = function() {
 		if(!valInput.value) {
@@ -21,31 +77,4 @@
 		return false;
 	};
 
-
-	let formRegist = document.forms.registerForm;
-	let valLogin = formRegist.elements.username;
-	let valPassword = formRegist.elements.hashPass;
-	let varEmail = formRegist.elements.email;
-
-	formRegist.onsubmit = function() {
-		if(!valLogin.value || !valPassword.value) {
-			alert("Error");
-		} else {
-			let obj = ({
-				// id: null,
-				username: valLogin.value,
-				hashPass: valPassword.value,
-				email: varEmail.value,
-				// role: null,
-				// lastVisit: null
-			});
-			let json = JSON.stringify(obj);
-			let xhr = new XMLHttpRequest();
-			console.log(valLogin.value + " " + valPassword.value + " " + varEmail.value);
-			xhr.open("POST", "http://localhost:8080/user/registration");
-			xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-			xhr.send(json);
-		}
-		return false;
-	}
 })();
