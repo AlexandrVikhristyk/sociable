@@ -11,7 +11,6 @@
 				id: null,
 				text: valInput.value
 			});
-			let formDate = new FormData(form);
 			let json = JSON.stringify(obj);
 			let xhr = new XMLHttpRequest();
 			console.log(json);
@@ -24,24 +23,23 @@
 
 
 	let formRegist = document.forms.registerForm;
-	let valLogin = form.elements.login;
-	let valPassword = form.elements.password;
+	let valLogin = formRegist.elements.log;
+	let valPassword = formRegist.elements.pas;
 
 	formRegist.onsubmit = function() {
-		if(!valLogin.value) {
+		if(!valLogin.value || !valPassword.value) {
 			alert("Error");
 		} else {
-			let obj = ({
-				userName: valLogin.value,
-				hashPass: valPassword.value
-			});
-			let formDate = new FormData(form);
-			let json = JSON.stringify(obj);
+			// let obj = ({
+			// 	userName: valLogin.value,
+			// 	hashPass: valPassword.value
+			// });
+			// let json = JSON.stringify(obj);
 			let xhr = new XMLHttpRequest();
-			console.log(json);
-			xhr.open("POST", "http://localhost:8080/message");
+			console.log(valLogin.value + valPassword.value);
+			xhr.open("POST", "http://localhost:8080/user");
 			xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-			xhr.send(json);
+			xhr.send(valLogin.value + valPassword.value);
 		}
 		return false;
 	}
