@@ -18,6 +18,8 @@ list-component {
 	}
 	& ul li {
 		margin-top: 10px;
+		display: flex;
+		justify-content: space-between;
 	}
 	& ul li button {
 		margin-left: 10px;
@@ -28,6 +30,7 @@ list-component {
 	} 
 	& ul li button:first-child {
 		background-color: #1de9b6;
+		margin-left: 350px;
 	}
 	& ul li button:last-child {
 		background-color: #f44336;
