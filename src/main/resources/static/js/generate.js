@@ -111,7 +111,7 @@ let listComponent = document.registerElement("list-component",{
 function deleteProjectFromBase(id) {
 	// let xhr = new XMLHttpRequest();
 	
-	getData("DELETE", "http://localhost:8080/message/1").then(
+	getData("DELETE", `http://localhost:8080/message/${id}`).then(
 		result => {
 			alert(result);
 		},
