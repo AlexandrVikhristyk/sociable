@@ -120,7 +120,11 @@ function deleteProjectFromBase(id) {
 		}
 	)
 
-	list.createdCallback();
+	let wrapperComp = document.getElementById("list-component__wrapper");
+	wrapperComp.removeChild(listComponent);
+	wrapperComp.append(listComponent);
+
+	// list.createdCallback();
 
 	// setTimeout(() => {
 	// 	getData("GET", "http://localhost:8080/message").then(
