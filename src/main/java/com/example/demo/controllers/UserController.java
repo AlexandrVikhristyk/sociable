@@ -3,12 +3,31 @@ package com.example.demo.controllers;
 import com.example.demo.Roles;
 import com.example.demo.domain.CustomUser;
 import com.example.demo.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("user")
 public class UserController {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     private final UserService userService;
+
+    @Bean
+    public DaoAuthenticationProvider authProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder);
+        return authProvider;
+    }
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -26,7 +45,8 @@ public class UserController {
         System.out.println("Role - " + user.getRole());
         System.out.println("Id - " + user.getId());
         System.out.println("Password - " + user.getHashPass());
-        userService.addUser(user.getUsername(), user.getHashPass(), user.getEmail(), Roles.USER);
+        System.out.println("Password!!!!!!!!! - " + passwordEncoder.encode(user.getHashPass()));
+        userService.addUser(user.getUsername(), passwordEncoder.encode(user.getHashPass()), user.getEmail(), Roles.USER);
     }
 
     @PostMapping("/account")
@@ -36,10 +56,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String userName, @RequestParam String hashPass){
-        if(userService.loginOfUser(userName,hashPass)) {
-            var user = userService.findByUsername(userName);
-            if(user.getHashPass().equals(hashPass)) {
+    public String login(@RequestBody CustomUser user){
+        if(userService.loginOfUser(user)) {
+            var userTemp = userService.findByUsername(user.getUsername());
+            if(user.getHashPass().equals(user.getHashPass())) {
                 return "templates/index.html";
             }
         }

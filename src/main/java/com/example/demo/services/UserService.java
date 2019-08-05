@@ -41,10 +41,10 @@ public class UserService {
     }
 
     @Transactional
-    public boolean loginOfUser(String username, String hashPass) {
-        if(userRepos.existsByUsername(username)) {
-            CustomUser user = userRepos.findByUsername(username);
-            if(user.getUsername().equals(username) && user.getHashPass().equals(hashPass)) {
+    public boolean loginOfUser(CustomUser user) {
+        if(userRepos.existsByUsername(user.getUsername())) {
+            CustomUser userTemp = userRepos.findByUsername(user.getUsername());
+            if(userTemp.getUsername().equals(user.getUsername()) && userTemp.getHashPass().equals(user.getHashPass())) {
                 return true;
             }
             else
