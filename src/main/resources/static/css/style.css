@@ -34,4 +34,15 @@ list-component ul li button:last-child {
   background-color: #f44336;
 }
 
+form-component form {
+  border: 2px solid red;
+  padding: 5%;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+form-component form input {
+  display: flex;
+}
+
 /*# sourceMappingURL=style.css.map */
