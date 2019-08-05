@@ -8,3 +8,12 @@
     margin: auto;
     padding-top: 50px;
 }
+
+list-component {
+	display: block;
+	width: 30%;
+  	margin-left: 20px;
+	& li  {
+		padding: 10px;
+	}
+}

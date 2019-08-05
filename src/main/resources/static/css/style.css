@@ -9,4 +9,13 @@
   padding-top: 50px;
 }
 
+list-component {
+  display: block;
+  width: 30%;
+  margin-left: 20px;
+}
+list-component li {
+  padding: 10px;
+}
+
 /*# sourceMappingURL=style.css.map */
