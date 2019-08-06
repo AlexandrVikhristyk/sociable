@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Courgette&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -6,15 +7,22 @@
 form-component form {
   border: 2px solid red;
   padding: 5%;
-  width: 50%;
+  width: 40%;
   margin: 0 auto;
   border-radius: 20px;
   margin-top: 50px;
 }
+form-component form p {
+  margin: 0px 20px 40px 20px;
+  display: flex;
+  justify-content: center;
+  font-family: "Courgette", cursive;
+  font-size: 18px;
+}
 form-component form input {
   display: flex;
   margin: 20px;
-  padding: 5px;
+  padding: 10px;
   width: 95%;
 }
 form-component form input[type=submit] {
@@ -27,6 +35,7 @@ form-component form input[type=submit] {
   border: 0;
   border-radius: 10px;
   outline: none;
+  margin-top: 50px;
 }
 
-/*# sourceMappingURL=form-registrtion.css.map */
+/*# sourceMappingURL=form-registration.css.map */

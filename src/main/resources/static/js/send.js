@@ -25,28 +25,6 @@
 		return false;
 	};
 
-	let formLogin = document.forms.formLogin;
-	let valueLogin = formLogin.elements.login;
-	let valuePassword = formLogin.elements.password;
-
-	formLogin.onsubmit = function() {
-		if(!valueLogin.value || !valuePassword.value) {
-			alert("Error");
-		} else {
-			let obj = ({
-				login: valueLogin.value,
-				password: valuePassword.value
-			});
-			let json = JSON.stringify(obj);
-			let xhr = new XMLHttpRequest();
-			console.log(json);
-			xhr.open("POST", "http://localhost:8080/message");
-			xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-			xhr.send(json);
-		}
-		return false;
-	};
-
 	function updatingTest() {
 
 		let xhr2 = new XMLHttpRequest();

@@ -5,17 +5,16 @@
 
 	formComponent.createdCallback = function() {
 
-		let formReg = document.createElement("form");
+		let formLogin = document.createElement("form");
 		let forTitle = document.createElement("p");
 		let inputSend = document.createElement("input");
-		forTitle.append(document.createTextNode("Form Registration"));
+		forTitle.append(document.createTextNode("Form login"));
 
 		let objAttribute = [
 		{"type": "name", "name": "username", "placeholder": "Username"},
-		{"type": "password", "name": "hashPass", "placeholder": "Password"},
-		{"type": "email", "name": "email", "placeholder": "Example@gmail.com"}
+		{"type": "password", "name": "hashPass", "placeholder": "Password"}
 		]
-
+		
 		let fragment = new DocumentFragment();
 			for (let i = 0; i < objAttribute.length; i++) {
 				let crInput = document.createElement("input");
@@ -25,31 +24,30 @@
 
 				fragment.append(crInput);
 			}
-			formReg.append(fragment);
-			formReg.setAttribute("name", "registerForm");
-			formReg.append(inputSend);
+			formLogin.append(fragment);
+			formLogin.setAttribute("name", "loginForm");
+			formLogin.append(inputSend);
 			inputSend.setAttribute("type", "submit");	
-			this.append(formReg);
-			formReg.insertBefore(forTitle, formReg[0]);
+			inputSend.setAttribute("value", "Sign In");
+			this.append(formLogin);
+			formLogin.insertBefore(forTitle, formLogin[0]);
 
-		let formRegist = document.forms.registerForm;
-		let valLogin = formRegist.elements.username;
-		let valPassword = formRegist.elements.hashPass;
-		let valEmail = formRegist.elements.email;
+		let loginForm = document.forms.loginForm;
+		let valLogin = formLogin.elements.username;
+		let valPassword = formLogin.elements.hashPass;
 
-		formRegist.onsubmit = function() {
-			if(!valLogin.value || !valPassword.value || !valEmail.value) {
+		formLogin.onsubmit = function() {
+			if(!valLogin.value || !valPassword.value) {
 				alert("Error");
 			} else {
 				let obj = ({
-					username: valLogin.value,
-					hashPass: valPassword.value,
-					email: valEmail.value
+					login: valLogin.value,
+					password: valPassword.value,
 				});
 				let json = JSON.stringify(obj);
 				let xhr = new XMLHttpRequest();
-				console.log(valLogin.value + " " + valPassword.value + " " + valEmail.value);
-				xhr.open("POST", "http://localhost:8080/user/registration");
+				console.log(valLogin.value + " " + valPassword.value);
+				xhr.open("POST", "http://localhost:8080/user/login");
 				xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 				xhr.send(json);
 			}
@@ -57,7 +55,7 @@
 		}
 		}
 
-		let formComponents = document.registerElement("form-component",{
+		let formComponents = document.registerElement("form-login",{
 			prototype: formComponent
 		});
 })();
