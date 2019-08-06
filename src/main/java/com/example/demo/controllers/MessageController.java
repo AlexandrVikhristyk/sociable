@@ -6,6 +6,8 @@ import com.example.demo.repository.MessageRepos;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -36,8 +38,6 @@ public class MessageController {
     @PostMapping
     public Message create(@RequestBody Message message) {
         System.out.println(message);
-//        Message message1 = new Message();
-//        message1.setText(message);
         message.setCreationDate(LocalDateTime.now());
         return messageRepos.save(message);
     }
@@ -55,5 +55,12 @@ public class MessageController {
     public void delete(@PathVariable("id") Message message) {
         messageRepos.delete(message);
     }
+
+    @MessageMapping("/hello")
+    @SendTo("/topic/greetings")
+    public Message message(Message message) {
+        return message;
+    }
+
 
 }

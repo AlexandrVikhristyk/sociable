@@ -6,7 +6,7 @@ let showList = [
 	{id: "3", text: "TEST"}
 ];
 
-function getData(method, from){
+function getData(method, from, ...args){
 
 	switch(method) {
 
@@ -39,6 +39,13 @@ function getData(method, from){
 				xhr.send();
 			 });
 		 break;
+		 case "PUT":
+		 	return new Promise(function(resolve, reject) {
+				let xhr = new XMLHttpRequest();
+				xhr.open("PUT", from, false);
+				xhr.send(args[0]);
+			});
+		 break;
 
 	}
 
@@ -69,7 +76,7 @@ list.createdCallback = function() {
 	function actnUpd(target) {
 		return function() {
 			target.addEventListener("click", event => {
-				updateProjectFromBase();
+				updateProjectFromBase(event.target);
 			});
 		}
 	}
@@ -80,6 +87,7 @@ list.createdCallback = function() {
 
 	for(let i = 0; i < showList.length; i++) {
 		let crI = document.createElement("li");
+		let crInput = document.createElement("input");
 
 		/////////////////////////////////////////dev vladoss
 	
@@ -90,7 +98,9 @@ list.createdCallback = function() {
 		actnUpd(buttonUpdate)();
 		buttonDelete.append(document.createTextNode("Delete"));
 		buttonUpdate.append(document.createTextNode("Update"));
-		crI.append(document.createTextNode(`${showList[i].id} - ${showList[i].text}`));
+		crInput.value = showList[i].text;
+		crI.append(document.createTextNode(`${showList[i].id}`));
+		crI.append(crInput);
 		crI.append(buttonUpdate);
 		crI.append(buttonDelete);
 
@@ -108,7 +118,7 @@ let listComponent = document.registerElement("list-component",{
 	prototype: list
 });
 
-function deleteProjectFromBase(target) {
+window.deleteProjectFromBase = function(target) {
 	// let xhr = new XMLHttpRequest();
 
 	target.parentNode.remove();
@@ -137,8 +147,21 @@ function deleteProjectFromBase(target) {
 	// }, 1000);
 }
 
-function updateProjectFromBase() {
-	alert("test");
+
+function updateProjectFromBase(target) {
+
+	let json = JSON.stringify({
+		text : target.clossest("input").value
+	});
+
+	getData("PUT", `http://localhost:8080/message/${target.dataset.stuffIdDelete}`, json).then(
+		result => {
+			alert(result);
+		},
+		error => {
+			alert(error);
+		}
+	)
 }
 
 

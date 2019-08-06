@@ -9,4 +9,9 @@ public class MainController {
     public String getIndex(){
         return "templates/index.html";
     }
+
+    @GetMapping("/testSocket")
+    public String socket(){
+        return "index.html";
+    }
 }
