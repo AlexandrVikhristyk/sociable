@@ -14,20 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("user")
 public class UserController {
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private UserDetailsService userDetailsService;
 
-    private final UserService userService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    @Bean
-    public DaoAuthenticationProvider authProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder);
-        return authProvider;
-    }
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -38,6 +30,12 @@ public class UserController {
         return "templates/index.html";
     }
 
+    @GetMapping("/login")
+    public String getLogin(){
+        System.out.println("GET LOGIN");
+        return "templates/index.html";
+    }
+
     @PostMapping("/registration")
     public void addNewUser(@RequestBody CustomUser user) {
         System.out.println("User name - " + user.getUsername());
@@ -45,8 +43,8 @@ public class UserController {
         System.out.println("Role - " + user.getRole());
         System.out.println("Id - " + user.getId());
         System.out.println("Password - " + user.getHashPass());
-        System.out.println("Password!!!!!!!!! - " + passwordEncoder.encode(user.getHashPass()));
-        userService.addUser(user.getUsername(), passwordEncoder.encode(user.getHashPass()), user.getEmail(), Roles.USER);
+        System.out.println("Password!!!!!!!!! - ");
+        userService.addUser(user.getUsername(), user.getHashPass(), user.getEmail(), Roles.USER);
     }
 
     @PostMapping("/account")
@@ -55,14 +53,23 @@ public class UserController {
         return "templates/index.html";
     }
 
-    @PostMapping("/login")
-    public String login(@RequestBody CustomUser user){
-        if(userService.loginOfUser(user)) {
-            var userTemp = userService.findByUsername(user.getUsername());
-            if(user.getHashPass().equals(user.getHashPass())) {
-                return "templates/index.html";
-            }
+    @PostMapping("/loggin")
+    public void login(@RequestBody CustomUser user){
+        System.out.println("POST LOGIN");
+        System.out.println(user);
+        if(userService.loginOfUser(user.getUsername(),user.getHashPass())) {
+            System.out.println("PIDORO");
         }
-        return "templates/index.html";
+        System.out.println("fffffffff");;
     }
+
+    @Bean
+    public DaoAuthenticationProvider authProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder);
+        return authProvider;
+    }
+
+
 }

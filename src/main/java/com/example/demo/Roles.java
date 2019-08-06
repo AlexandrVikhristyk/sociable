@@ -1,7 +1,7 @@
 package com.example.demo;
 
 public enum Roles {
-    USER, ADMIN;
+    USER, ADMIN, DEVELOPER;
 
     @Override
     public String toString() {
