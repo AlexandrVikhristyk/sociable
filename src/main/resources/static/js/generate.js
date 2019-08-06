@@ -43,6 +43,7 @@ function getData(method, from, json){
 		 	return new Promise(function(resolve, reject) {
 				let xhr = new XMLHttpRequest();
 				xhr.open("PUT", from, false);
+				xhr.setRequestHeader('Content-Type', 'application/json');
 				console.log(json);
 				xhr.send(json);
 			});
@@ -148,21 +149,19 @@ window.deleteProjectFromBase = function(target) {
 	// 		}
 	// 	)
 	// }, 1000);
-}
+};
 
 
 function updateProjectFromBase(target) {
 
 	let obj = ({
-		id: 1,
-		text: "123"
+		text: target.previousElementSibling.value
 	});
-	let json = JSON.stringify(obj);
-	// ${target.dataset.stuffIdUpdate}
 
+	let json = JSON.stringify(obj);
 	console.log(json);
 
-	getData("PUT", `http://localhost:8080/message/1`, '{"text":"TEST!"}').then(
+	getData("PUT", `/message/${target.dataset.stuffIdUpdate}`, json).then(
 		result => {
 			alert(result);
 		},
