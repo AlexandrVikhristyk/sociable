@@ -6,7 +6,7 @@ let showList = [
 	{id: "3", text: "TEST"}
 ];
 
-function getData(method, from, ...args){
+function getData(method, from, json){
 
 	switch(method) {
 
@@ -43,7 +43,9 @@ function getData(method, from, ...args){
 		 	return new Promise(function(resolve, reject) {
 				let xhr = new XMLHttpRequest();
 				xhr.open("PUT", from, false);
-				xhr.send(args[0]);
+				xhr.setRequestHeader('Content-Type', 'application/json');
+				console.log(json);
+				xhr.send(json);
 			});
 		 break;
 
@@ -95,11 +97,12 @@ list.createdCallback = function() {
 		buttonDelete.dataset.stuffIdDelete = showList[i].id;
 		actnDel(buttonDelete)();
 		let buttonUpdate = document.createElement("button");
-		buttonUpdate.setAttribute("class", "buttonUpdate");
+		buttonUpdate.dataset.stuffIdUpdate = showList[i].id;
 		actnUpd(buttonUpdate)();
 		buttonDelete.append(document.createTextNode("Delete"));
 		buttonUpdate.append(document.createTextNode("Update"));
-		crInput.value = showList[i].text;
+		crInput.type = "text";
+		crInput.setAttribute('value', showList[i].text);
 		crI.append(document.createTextNode(`${showList[i].id}`));
 		crI.append(crInput);
 		crI.append(buttonUpdate);
@@ -146,16 +149,19 @@ window.deleteProjectFromBase = function(target) {
 	// 		}
 	// 	)
 	// }, 1000);
-}
+};
 
 
 function updateProjectFromBase(target) {
 
-	let json = JSON.stringify({
-		text : target.clossest("input").value
+	let obj = ({
+		text: target.previousElementSibling.value
 	});
 
-	getData("PUT", `http://localhost:8080/message/${target.dataset.stuffIdDelete}`, json).then(
+	let json = JSON.stringify(obj);
+	console.log(json);
+
+	getData("PUT", `/message/${target.dataset.stuffIdUpdate}`, json).then(
 		result => {
 			alert(result);
 		},

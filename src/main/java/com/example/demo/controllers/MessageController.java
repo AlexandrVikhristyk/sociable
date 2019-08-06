@@ -37,7 +37,6 @@ public class MessageController {
 
     @PostMapping
     public Message create(@RequestBody Message message) {
-        System.out.println(message);
         message.setCreationDate(LocalDateTime.now());
         return messageRepos.save(message);
     }
@@ -47,6 +46,7 @@ public class MessageController {
             @PathVariable("id") Message messageFromDb,
             @RequestBody Message message
     ) {
+        System.out.println(message);
         BeanUtils.copyProperties(message, messageFromDb, "id");
         return messageRepos.save(messageFromDb);
     }
