@@ -1,0 +1,30 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+form-component form {
+	border: 2px solid red;
+	padding: 5%;
+	width: 50%;
+	margin: 0 auto;
+	border-radius: 20px;
+	margin-top: 50px;
+	& input {
+		display: flex;
+		margin: 20px;
+    	padding: 5px;
+    	width: 95%;
+	 
+		&[type="submit"] {
+			background-color: #2962ff;
+		    text-align: center;
+		    color: white;
+		    display: block;
+		    width: 50%;
+		    margin: 0 auto;
+		    border: 0;
+		    border-radius: 10px;
+		    outline: none;
+		}	
+	}
+} 

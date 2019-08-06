@@ -6,7 +6,7 @@
 .form {
     width: 60%;
     margin: auto;
-    padding-top: 50px;
+    padding: 50px 0px;
 }
 
 list-component {
@@ -37,13 +37,3 @@ list-component {
 	}
 }
 
-form-component form {
-	border: 2px solid red;
-	padding: 5%;
-	width: 50%;
-	margin: 0 auto;
-	border-radius: 20px;
-	& input {
-		display: flex;
-	}
-} 
