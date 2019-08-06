@@ -29,37 +29,12 @@ list-component ul li button {
   border-radius: 4px;
   color: white;
 }
-list-component ul li button:first-child {
+list-component .buttonUpdate {
   background-color: #1de9b6;
   margin-left: 350px;
 }
 list-component ul li button:last-child {
   background-color: #f44336;
-}
-
-form-component form {
-  border: 2px solid red;
-  padding: 5%;
-  width: 50%;
-  margin: 0 auto;
-  border-radius: 20px;
-}
-form-component form input {
-  display: flex;
-  margin: 20px;
-  padding: 5px;
-  width: 95%;
-}
-form-component form input[type=submit] {
-  background-color: #2962ff;
-  text-align: center;
-  color: white;
-  display: block;
-  width: 50%;
-  margin: 0 auto;
-  border: 0;
-  border-radius: 10px;
-  outline: none;
 }
 
 /*# sourceMappingURL=style.css.map */
