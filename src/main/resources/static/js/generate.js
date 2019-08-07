@@ -98,6 +98,7 @@ list.createdCallback = function() {
 		actnDel(buttonDelete)();
 		let buttonUpdate = document.createElement("button");
 		buttonUpdate.dataset.stuffIdUpdate = showList[i].id;
+		buttonUpdate.setAttribute("class", "buttonUpdate");
 		actnUpd(buttonUpdate)();
 		buttonDelete.append(document.createTextNode("Delete"));
 		buttonUpdate.append(document.createTextNode("Update"));
