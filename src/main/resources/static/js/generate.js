@@ -1,5 +1,52 @@
 (function() {
 
+let chat = Object.create(HTMLElement.prototype);
+
+chat.createdCallback = function() {
+
+	let stompClient = null;
+
+	let crWrapper = document.createElement("div");
+	crWrapper.className = "chat_wrapper";
+	let iconChat = new Image();
+	iconChat.src = "../../assets/speech-bubble.svg";
+	crWrapper.append(iconChat);
+	this.append(crWrapper);
+
+	let crChatBlock = document.createElement("div");
+	crChatBlock.className = "chat_wrapper__block";
+	document.body.append(crChatBlock);
+
+
+	crWrapper.addEventListener("click", (event) => {
+		crChatBlock.classList.toggle("chat_wrapper__block__open");
+		connect();
+	});
+
+	function connect() {
+	    let socket = new SockJS('/gs-guide-websocket');
+	    stompClient = Stomp.over(socket);
+	    stompClient.connect({}, function (frame) {
+	        setConnected(true);
+	        console.log('Connected: ' + frame);
+	        stompClient.subscribe('/topic/greetings', function (greeting) {
+	            showGreeting(JSON.parse(greeting.body).text);
+	        });
+	    });
+	}
+
+	function showGreeting(message) {
+    	$(".chat_wrapper__block").append("<tr><td>" + message + "</td></tr>");
+	}
+
+
+}
+
+let chatComponent = document.registerElement("chat-component",{
+	prototype: chat
+});
+
+
 let showList = [
 	{id: "1", text: "TEST"},
 	{id: "2", text: "TEST"},
@@ -58,7 +105,7 @@ getData("GET", "http://localhost:8080/message").then(
 		console.log(result);
 	},
 	error => {
-		alert(error);
+		console.log(error);
 	}
 )
 // ("http://localhost:8080/message");
@@ -84,7 +131,7 @@ list.createdCallback = function() {
 	}
 
 	let crUl = document.createElement("ul");
-	crUl.classList.add("list-component__wrapper");
+	crUl.className = "list-component__wrapper list-group";
 	let fragment = new DocumentFragment();
 
 	for(let i = 0; i < showList.length; i++) {
@@ -104,6 +151,7 @@ list.createdCallback = function() {
 		buttonUpdate.append(document.createTextNode("Update"));
 		crInput.type = "text";
 		crInput.setAttribute('value', showList[i].text);
+		crInput.className = "form-control";
 		crI.append(document.createTextNode(`${showList[i].id}`));
 		crI.append(crInput);
 		crI.append(buttonUpdate);
@@ -111,7 +159,7 @@ list.createdCallback = function() {
 
 		/////////////////////////////////////////
 
-		crI.classList.add("list-component__wrapper__item");
+		crI.className = "list-component__wrapper__item list-group-item";
 		crI.dataset.stuffId = showList[i].id;
 		fragment.append(crI);
 	}
@@ -130,10 +178,10 @@ window.deleteProjectFromBase = function(target) {
 	
 	getData("DELETE", `http://localhost:8080/message/${target.dataset.stuffIdDelete}`).then(
 		result => {
-			alert(result);
+			console.log(result);
 		},
 		error => {
-			alert(error);
+			console.log(error);
 		}
 	)
 
@@ -164,10 +212,10 @@ function updateProjectFromBase(target) {
 
 	getData("PUT", `/message/${target.dataset.stuffIdUpdate}`, json).then(
 		result => {
-			alert(result);
+			console.log(result);
 		},
 		error => {
-			alert(error);
+			console.log(error);
 		}
 	)
 }
