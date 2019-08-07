@@ -65,4 +65,16 @@ public class UserController {
         }
         return "templates/index.html";
     }
+
+    @GetMapping("/activate/{code}")
+    public String activate(@PathVariable String code){
+        boolean isActived = userService.activateUser(code);
+        System.out.println("TEST TEST TEST TEST TEST");
+        if (isActived)
+            System.out.println("NICE");
+        else
+            System.out.println("FUCK IT");
+
+        return "templates/index.html";
+    }
 }

@@ -59,7 +59,8 @@ public class MessageController {
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
     public Message message(Message message) {
-        return message;
+        message.setCreationDate(LocalDateTime.now());
+        return messageRepos.save(message);
     }
 
 

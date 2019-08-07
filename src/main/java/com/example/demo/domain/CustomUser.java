@@ -2,6 +2,7 @@ package com.example.demo.domain;
 
 import com.example.demo.Roles;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -9,12 +10,14 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "users")
 @Data
+@NoArgsConstructor
 public class CustomUser {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
     private String hashPass;
     private String email;
+    private String activationCode;
     @Enumerated(EnumType.STRING)
     private Roles role;
     @Column(updatable = false)

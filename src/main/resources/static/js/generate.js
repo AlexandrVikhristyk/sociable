@@ -42,10 +42,10 @@ chat.createdCallback = function() {
 	    let socket = new SockJS('/gs-guide-websocket');
 	    stompClient = Stomp.over(socket);
 	    stompClient.connect({}, function (frame) {
-	        setConnected(true);
 	        console.log('Connected: ' + frame);
 	        stompClient.subscribe('/topic/greetings', function (greeting) {
-	            showGreeting(JSON.parse(greeting.body).text);
+	        	let obj = JSON.parse(greeting.body);
+	            showGreeting(obj.text + " " + obj.creationDate);
 	        });
 	    });
 	}
