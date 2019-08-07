@@ -12,5 +12,4 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addViewController("/testSocket").setViewName("index.html");
         registry.addViewController("/").setViewName("templates/index.html");
     }
-
 }
