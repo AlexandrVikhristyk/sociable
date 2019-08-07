@@ -15,13 +15,28 @@ chat.createdCallback = function() {
 
 	let crChatBlock = document.createElement("div");
 	crChatBlock.className = "chat_wrapper__block";
-	document.body.append(crChatBlock);
+	let crInput = document.createElement("input");
+	crInput.type = "text";
+	crInput.name = "send-socked";
+	let crBtn = document.createElement("input");
+	crBtn.type = "submit";
+	crBtn.addEventListener("click", () => {
+		sendName(crInput.value);
+		console.log("SEND SOCKED");
+	});
 
+	crChatBlock.append(crInput);
+	crChatBlock.append(crBtn);
+	document.body.append(crChatBlock);
 
 	crWrapper.addEventListener("click", (event) => {
 		crChatBlock.classList.toggle("chat_wrapper__block__open");
 		connect();
 	});
+
+	function sendName(data) {
+    	stompClient.send("/app/hello", {}, JSON.stringify({'text': data}));
+	}
 
 	function connect() {
 	    let socket = new SockJS('/gs-guide-websocket');
