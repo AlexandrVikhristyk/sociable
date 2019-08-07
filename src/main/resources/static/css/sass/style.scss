@@ -21,16 +21,29 @@
 }
 
 list-component {
-	display: block;
-	width: 30%;
-  	margin-left: 20px;
+  	display: -webkit-flex;
+  	display: -moz-flex;
+  	display: -ms-flex;
+  	display: -o-flex;
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
 	& ul {
 		padding: 10px;
+		width: 50%;
 	}
 	& ul li {
 		margin-top: 10px;
-		display: flex;
-		justify-content: space-between;
+		display: -webkit-flex !important;
+		display: -moz-flex !important;
+		display: -ms-flex !important;
+		display: -o-flex !important;
+		display: flex !important;
+		justify-content: space-between !important;
+		align-items: center;
+		.form-control {
+			width: 75%;
+		}
 	}
 	& ul li button {
 		margin-left: 10px;
@@ -41,7 +54,6 @@ list-component {
 	} 
 	& .buttonUpdate {
 		background-color: #1de9b6;
-		margin-left: 350px;
 	}
 	& ul li button:last-child {
 		background-color: #f44336;
@@ -173,6 +185,62 @@ list-component {
 		-ms-animation: cssload-movement 690ms ease 776.25ms infinite alternate;
 		-webkit-animation: cssload-movement 690ms ease 776.25ms infinite alternate;
 		-moz-animation: cssload-movement 690ms ease 776.25ms infinite alternate;
+}
+
+.chat_wrapper {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: #f44336;
+	position: absolute;
+	right: 30px;
+	bottom: 30px;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transform: scale(0.8);
+	transition: all .2s;
+	animation: pulse 1s infinite;
+	img {
+		width: 30px;
+		z-index: 2;
+	}
+	&:hover {
+	transform: scale(1);
+	}
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.8);
+	}
+	50% {
+		transform: scale(0.9);
+	}
+	100% {
+		transform: scale(0.8);
+	}
+}
+
+.chat_wrapper__block {
+	background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+	height: 500px;
+	width: 300px;
+	bottom: -500px;
+	right: 100px;
+	position: fixed;
+	transition: all ease-in-out .2s;
+	&.chat_wrapper__block__open {
+		bottom: 10px;
+	}
 }
 
 
