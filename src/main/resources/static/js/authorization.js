@@ -26,13 +26,13 @@
 
 		loginForm.onsubmit = function() {
 				let obj = ({
-					login: valLogin.value,
-					password: valPassword.value,
+					username: valLogin.value,
+					hashPass: valPassword.value,
 				});
 				let json = JSON.stringify(obj);
 				let xhr = new XMLHttpRequest();
 				console.log(valLogin.value + " " + valPassword.value);
-				xhr.open("POST", "http://localhost:8080/user/log");
+				xhr.open("POST", "http://localhost:8080/log");
 				xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 				xhr.send(json);
 
@@ -61,8 +61,9 @@
 				let json = JSON.stringify(obj);
 				let xhr = new XMLHttpRequest();
 				console.log(valueLogin.value + " " + valuePassword.value + " " + valueEmail.value);
-				xhr.open("POST", "http://localhost:8080/user/reg");
+				xhr.open("POST", "http://localhost:8080/reg");
 				xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+				console.log(json);
 				xhr.send(json);
 
 				xhr.onload = function() {

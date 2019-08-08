@@ -3,6 +3,8 @@ package com.example.demo.services;
 import com.example.demo.Roles;
 import com.example.demo.domain.CustomUser;
 import com.example.demo.repository.UserRepos;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -13,6 +15,8 @@ import java.util.UUID;
 
 @Service
 public class UserService {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     private final UserRepos userRepos;
     private final MailService mailService;
 
@@ -28,7 +32,9 @@ public class UserService {
 
     @Transactional
     public boolean addUser(String username, @NotNull String passHash, String email, Roles role){
-        if (userRepos.existsByUsername(username) && !passHash.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,16}"))
+        if (userRepos.existsByUsername(username)
+                && !passHash.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,16}")
+                && !username.matches("^[a-zA-Z][a-zA-Z0-9-_\\.]{2,20}$"))
             return false;
         CustomUser user = new CustomUser(username, passHash, email, role);
         user.setActivationCode(UUID.randomUUID().toString());
@@ -59,10 +65,10 @@ public class UserService {
     }
 
     @Transactional
-    public boolean loginOfUser(CustomUser user) {
-        if(userRepos.existsByUsername(user.getUsername())) {
-            CustomUser userTemp = userRepos.findByUsername(user.getUsername());
-            if(userTemp.getUsername().equals(user.getUsername()) && userTemp.getHashPass().equals(user.getHashPass())) {
+    public boolean loginOfUser(String login, String password) {
+        if(userRepos.existsByUsername(login)) {
+            CustomUser userTemp = userRepos.findByUsername(login);
+            if(userTemp.getUsername().equals(login) && passwordEncoder.matches(password, userTemp.getHashPass())) {
                 return true;
             }
         }
