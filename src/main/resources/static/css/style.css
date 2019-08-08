@@ -191,7 +191,7 @@ list-component {
   cursor: pointer;
   transform: scale(0.8);
   transition: all .2s;
-  animation: pulse 1s infinite; }
+  animation: pulse 10s infinite; }
   .chat_wrapper img {
     width: 30px;
     z-index: 2; }
@@ -206,18 +206,33 @@ list-component {
   100% {
     transform: scale(0.8); } }
 .chat_wrapper__block {
+  z-index: 2;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: .3rem;
+  /*border: 1px solid rgba(0,0,0,.2);*/
+  border-radius: .4rem;
   height: 500px;
   width: 300px;
-  bottom: -500px;
+  /*transform: translateY(10px);*/
+  bottom: -20px;
   right: 100px;
+  opacity: 0;
   position: fixed;
   transition: all ease-in-out .2s; }
   .chat_wrapper__block.chat_wrapper__block__open {
-    bottom: 10px; }
+    /*transform: translateY(-10px);*/
+    bottom: 20px;
+    opacity: 1; }
+  .chat_wrapper__block .spinner-border.text-danger {
+    position: absolute;
+    top: 45%;
+    left: 45%; }
+  .chat_wrapper__block .form-control {
+    width: 65%;
+    display: initial !important; }
+  .chat_wrapper__block .btn.btn-danger {
+    display: initial !important;
+    vertical-align: baseline; }
 
 @keyframes cssload-movement {
   from {
