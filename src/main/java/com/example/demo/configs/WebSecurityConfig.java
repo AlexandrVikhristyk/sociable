@@ -32,12 +32,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/login", "/log", "/user/activate/*").permitAll()
+                    .antMatchers("/login", "/reg", "/user/activate/*").permitAll()
                     .antMatchers("/message").hasRole("DEVELOPER")
-//                    .anyRequest().authenticated()
+                    .anyRequest().authenticated()
                     .and()
                 .formLogin()
-                    .loginPage("/login")
+                    .loginPage("/reg")
                     .and()
                 .logout().permitAll();
     }
@@ -68,13 +68,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PrincipalExtractor principalExtractor(UserRepos userRepos) {
         return map -> {
             String name = (String) map.get("name");
-            CustomUser customUser = new CustomUser();
             if(!userRepos.existsByUsername(name)) {
-                customUser.setUsername((String)map.get("name"));
-                customUser.setEmail((String) map.get("email"));
-                customUser.setRole(Roles.USER);
+                CustomUser customUser = new CustomUser();
+                if(!userRepos.existsByUsername(name)) {
+                    customUser.setUsername((String)map.get("name"));
+                    customUser.setEmail((String) map.get("email"));
+                    customUser.setRole(Roles.USER);
+                }
+                return userRepos.save(customUser);
             }
-            return userRepos.save(customUser);
+            else {
+                return userRepos.findByUsername(name);
+            }
         };
     }
 }
