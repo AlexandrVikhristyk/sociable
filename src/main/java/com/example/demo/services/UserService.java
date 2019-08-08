@@ -3,19 +3,12 @@ package com.example.demo.services;
 import com.example.demo.Roles;
 import com.example.demo.domain.CustomUser;
 import com.example.demo.repository.UserRepos;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.validation.constraints.NotNull;
 
 @Service
 public class UserService {
     private final UserRepos userRepos;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     public UserService(UserRepos userRepos) {
         this.userRepos = userRepos;
@@ -31,6 +24,17 @@ public class UserService {
         if (userRepos.existsByUsername(username) && !passHash.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,16}"))
             return false;
         CustomUser user = new CustomUser(username, passwordEncoder.encode(passHash), email, role);
+        user.setActivationCode(UUID.randomUUID().toString());
+        if (!StringUtils.isEmpty(user.getEmail())){
+            String message = String.format(
+              "Hello, %s! \n" +
+                      "Welcome to Sociable. Please, visit next link: http://localhost:8080/user/activate/%s",
+                    user.getUsername(),
+                    user.getActivationCode()
+            );
+            mailService.send(user.getEmail(), "Activation code", message);
+        }
+
         userRepos.save(user);
         return true;
     }
@@ -48,10 +52,10 @@ public class UserService {
     }
 
     @Transactional
-    public boolean loginOfUser(String username, String passHash) {
-        if(userRepos.existsByUsername(username)) {
-            CustomUser userTemp = userRepos.findByUsername(username);
-            if(userTemp.getUsername().equals(username) && userTemp.getHashPass().equals(passHash)) {
+    public boolean loginOfUser(CustomUser user) {
+        if(userRepos.existsByUsername(user.getUsername())) {
+            CustomUser userTemp = userRepos.findByUsername(user.getUsername());
+            if(userTemp.getUsername().equals(user.getUsername()) && userTemp.getHashPass().equals(user.getHashPass())) {
                 return true;
             }
             else
@@ -59,5 +63,15 @@ public class UserService {
         }
         else
             return false;
+    }
+
+    public boolean activateUser(String code) {
+        CustomUser user = userRepos.findByActivationCode(code);
+        if (Objects.isNull(user))
+            return false;
+        user.setActivationCode(null);
+
+        userRepos.save(user);
+        return true;
     }
 }

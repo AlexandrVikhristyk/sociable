@@ -9,4 +9,6 @@ import java.util.List;
 public interface UserRepos extends JpaRepository<CustomUser, Long> {
     CustomUser findByUsername(@Param("username") String username);
     boolean existsByUsername(@Param("username") String username);
+
+    CustomUser findByActivationCode(String code);
 }
