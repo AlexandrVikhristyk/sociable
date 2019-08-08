@@ -25,9 +25,6 @@
 		let valPassword = loginForm.elements.hashPass;
 
 		loginForm.onsubmit = function() {
-			if(!valLogin.value || !valPassword.value) {
-				alert("Error");
-			} else {
 				let obj = ({
 					login: valLogin.value,
 					password: valPassword.value,
@@ -38,7 +35,15 @@
 				xhr.open("POST", "http://localhost:8080/user/log");
 				xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 				xhr.send(json);
-			}
+
+				xhr.onload = function() {
+					if(xhr.status == 200) {
+						alert(xhr.response.length);
+					} else {
+						alert(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+					}
+				}
+			
 			return false;
 		}
 
@@ -48,9 +53,6 @@
 		let valueEmail = formRegist.elements.email;
 
 		formRegist.onsubmit = function() {
-			if(!valueLogin.value || !valuePassword.value || !valueEmail.value) {
-				alert("Error");
-			} else {
 				let obj = ({
 					username: valueLogin.value,
 					hashPass: valuePassword.value,
@@ -62,7 +64,15 @@
 				xhr.open("POST", "http://localhost:8080/user/reg");
 				xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 				xhr.send(json);
-			}
+
+				xhr.onload = function() {
+					if(xhr.status == 200) {
+						alert(xhr.response.length);
+					} else {
+						alert(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+					}
+				}
+		
 			return false;
 		}
 })();
