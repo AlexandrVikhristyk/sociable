@@ -38,7 +38,7 @@
 
 				xhr.onload = function() {
 					if(xhr.status == 200) {
-						alert(xhr.response.length);
+						alert("Саша ПИДОР!!!!");
 					} else {
 						alert(`Ошибка ${xhr.status}: ${xhr.statusText}`);
 					}
@@ -67,7 +67,7 @@
 
 				xhr.onload = function() {
 					if(xhr.status == 200) {
-						alert(xhr.response.length);
+						alert("Саша ПИДОР!!!!");
 					} else {
 						alert(`Ошибка ${xhr.status}: ${xhr.statusText}`);
 					}
