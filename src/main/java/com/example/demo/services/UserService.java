@@ -5,13 +5,20 @@ import com.example.demo.domain.CustomUser;
 import com.example.demo.repository.UserRepos;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
+import java.util.UUID;
 
 @Service
 public class UserService {
     private final UserRepos userRepos;
+    private final MailService mailService;
 
-    public UserService(UserRepos userRepos) {
+    public UserService(UserRepos userRepos, MailService mailService) {
         this.userRepos = userRepos;
+        this.mailService = mailService;
     }
 
     @Transactional(readOnly = true)
@@ -20,10 +27,10 @@ public class UserService {
     }
 
     @Transactional
-    public boolean addUser(String username, String passHash, String email, Roles role){
+    public boolean addUser(String username, @NotNull String passHash, String email, Roles role){
         if (userRepos.existsByUsername(username) && !passHash.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,16}"))
             return false;
-        CustomUser user = new CustomUser(username, passwordEncoder.encode(passHash), email, role);
+        CustomUser user = new CustomUser(username, passHash, email, role);
         user.setActivationCode(UUID.randomUUID().toString());
         if (!StringUtils.isEmpty(user.getEmail())){
             String message = String.format(
@@ -58,11 +65,8 @@ public class UserService {
             if(userTemp.getUsername().equals(user.getUsername()) && userTemp.getHashPass().equals(user.getHashPass())) {
                 return true;
             }
-            else
-                return false;
         }
-        else
-            return false;
+        return false;
     }
 
     public boolean activateUser(String code) {

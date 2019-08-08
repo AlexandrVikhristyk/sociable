@@ -5,10 +5,12 @@ import com.example.demo.domain.CustomUser;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
 @RequestMapping("user")
@@ -21,21 +23,8 @@ public class UserController {
 
     private final UserService userService;
 
-    @Bean
-    public DaoAuthenticationProvider authProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder);
-        return authProvider;
-    }
-
     public UserController(UserService userService) {
         this.userService = userService;
-    }
-
-    @GetMapping("/registration")
-    public String addNew(){
-        return "templates/index.html";
     }
 
     @PostMapping("/registration")
@@ -54,6 +43,11 @@ public class UserController {
         userService.updateUser(userName,email);
         return "templates/index.html";
     }
+
+//    @GetMapping
+//    public String loggin() {
+//        return "templates/form-login.html";
+//    }
 
     @PostMapping("/login")
     public String login(@RequestBody CustomUser user){
@@ -76,5 +70,13 @@ public class UserController {
             System.out.println("FUCK IT");
 
         return "templates/index.html";
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder);
+        return authProvider;
     }
 }
