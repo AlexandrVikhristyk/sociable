@@ -42,7 +42,7 @@ chat.createdCallback = function() {
 		crChatBlock.classList.toggle("chat_wrapper__block__open");
 		if(!statusConnect){
 			connect().then(
-				result => {$(crChatBlock).hide()},
+				result => {$(".spinner-border").hide()},
 				error => { console.log(error) }
 			);
 			statusConnect = true;
@@ -58,10 +58,10 @@ chat.createdCallback = function() {
 			let socket = new SockJS('/gs-guide-websocket');
 		    stompClient = Stomp.over(socket);
 		    stompClient.connect({}, function (frame) {
+		    	resolve();
 		        stompClient.subscribe('/topic/greetings', function (greeting) {
 		        	let obj = JSON.parse(greeting.body);
 		            showGreeting(obj.text + " " + obj.creationDate);
-		            resolve();
 		            console.log('Connected: ' + frame);
 		        });
 		    }, function() {
