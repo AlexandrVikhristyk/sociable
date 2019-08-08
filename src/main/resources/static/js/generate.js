@@ -13,13 +13,19 @@ chat.createdCallback = function() {
 	crWrapper.append(iconChat);
 	this.append(crWrapper);
 
+	let animationLoad = `<div class="spinner-border text-danger" role="status">
+ 							<span class="sr-only">Loading...</span>
+						</div>`
+
 	let crChatBlock = document.createElement("div");
-	crChatBlock.className = "chat_wrapper__block";
+	crChatBlock.className = "chat_wrapper__block shadow";
 	let crInput = document.createElement("input");
 	crInput.type = "text";
 	crInput.name = "send-socked";
+	crInput.className = "form-control";
 	let crBtn = document.createElement("input");
 	crBtn.type = "submit";
+	crBtn.className = "btn btn-danger";
 	crBtn.addEventListener("click", () => {
 		sendName(crInput.value);
 		console.log("SEND SOCKED");
@@ -27,11 +33,20 @@ chat.createdCallback = function() {
 
 	crChatBlock.append(crInput);
 	crChatBlock.append(crBtn);
+	$(crChatBlock).append(animationLoad);
 	document.body.append(crChatBlock);
+
+	let statusConnect = false;
 
 	crWrapper.addEventListener("click", (event) => {
 		crChatBlock.classList.toggle("chat_wrapper__block__open");
-		connect();
+		if(!statusConnect){
+			connect().then(
+				result => {$(crChatBlock).hide()},
+				error => { console.log(error) }
+			);
+			statusConnect = true;
+		}
 	});
 
 	function sendName(data) {
@@ -39,15 +54,21 @@ chat.createdCallback = function() {
 	}
 
 	function connect() {
-	    let socket = new SockJS('/gs-guide-websocket');
-	    stompClient = Stomp.over(socket);
-	    stompClient.connect({}, function (frame) {
-	        console.log('Connected: ' + frame);
-	        stompClient.subscribe('/topic/greetings', function (greeting) {
-	        	let obj = JSON.parse(greeting.body);
-	            showGreeting(obj.text + " " + obj.creationDate);
-	        });
-	    });
+		return new Promise(function(resolve, reject) {
+			let socket = new SockJS('/gs-guide-websocket');
+		    stompClient = Stomp.over(socket);
+		    stompClient.connect({}, function (frame) {
+		        stompClient.subscribe('/topic/greetings', function (greeting) {
+		        	let obj = JSON.parse(greeting.body);
+		            showGreeting(obj.text + " " + obj.creationDate);
+		            resolve();
+		            console.log('Connected: ' + frame);
+		        });
+		    }, function() {
+		    	console.log("Error connected");
+		    	reject();
+		    });
+		});
 	}
 
 	function showGreeting(message) {
