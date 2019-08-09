@@ -1,5 +1,5 @@
-// "use strict"
-// window.onload = function() {
-// 	let preloader = document.getElementById("preloader");
-// 	preloader.style.display = "none";
-// };
+"use strict"
+window.onload = function() {
+	let preloader = document.getElementById("container");
+	preloader.style.display = "none";
+};

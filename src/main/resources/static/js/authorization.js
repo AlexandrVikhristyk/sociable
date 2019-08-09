@@ -32,7 +32,7 @@
 
 				xhr.onload = function() {
 					if(xhr.status == 200) {
-						alert("successful");
+						location.href = "/";
 					} else {
 						alert(`Ошибка ${xhr.status}: ${xhr.statusText}`);
 					}
@@ -61,7 +61,7 @@
 
 				xhr.onload = function() {
 					if(xhr.status == 200) {
-						alert("successful");
+						location.href = "/";
 					} else {
 						alert(`Ошибка ${xhr.status}: ${xhr.statusText}`);
 					}
