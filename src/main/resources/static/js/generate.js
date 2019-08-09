@@ -9,7 +9,7 @@ chat.createdCallback = function() {
 	let crWrapper = document.createElement("div");
 	crWrapper.className = "chat_wrapper";
 	let iconChat = new Image();
-	iconChat.src = "../../assets/speech-bubble.svg";
+	iconChat.src = "../assets/speech-bubble.svg";
 	crWrapper.append(iconChat);
 	this.append(crWrapper);
 
