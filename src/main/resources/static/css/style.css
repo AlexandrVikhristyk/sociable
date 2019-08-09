@@ -238,10 +238,14 @@ list-component {
     margin: 10px 5px;
     padding: 5px 15px;
     font-family: 14px;
+    width: max-content;
+    max-width: 60%;
     color: #26383c;
+    background: #d4f1fe;
+    border-radius: 20px;
     position: relative;
     }
-  .chat_wrapper__block .chat-items span{
+  .chat_wrapper__block .chat-items .chat-items__date{
     position: absolute;
     bottom: 0;
     right: -30px;

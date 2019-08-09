@@ -10,7 +10,8 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -37,7 +38,8 @@ public class MessageController {
 
     @PostMapping
     public Message create(@RequestBody Message message) {
-        message.setCreationDate(LocalDateTime.now());
+        message.setCreationDate(LocalDate.now());
+        message.setCreationTime(LocalTime.now());
         return messageRepos.save(message);
     }
 
@@ -59,7 +61,8 @@ public class MessageController {
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
     public Message message(Message message) {
-        message.setCreationDate(LocalDateTime.now());
+        message.setCreationDate(LocalDate.now());
+        message.setCreationTime(LocalTime.now());
         return messageRepos.save(message);
     }
 

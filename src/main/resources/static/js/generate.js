@@ -54,6 +54,7 @@ chat.createdCallback = function() {
 
 	function sendName(data) {
     	stompClient.send("/app/hello", {}, JSON.stringify({'text': data}));
+		crInput.value = "";
 	}
 
 	function connect() {
@@ -64,7 +65,7 @@ chat.createdCallback = function() {
 		    	resolve();
 		        stompClient.subscribe('/topic/greetings', function (greeting) {
 		        	let obj = JSON.parse(greeting.body);
-		            showGreeting(obj.text + " " + obj.creationDate);
+		            showGreeting(obj.text, obj.creationDate, obj.creationTime);
 		            console.log('Connected: ' + frame);
 		        });
 		    }, function() {
@@ -74,8 +75,9 @@ chat.createdCallback = function() {
 		});
 	}
 
-	function showGreeting(message) {
-    	$(".chat_wrapper__block").append("<tr><td>" + message + "</td></tr>");
+	function showGreeting(message, date, time) {
+    	$(".chat_wrapper__block").append("<div class='chat-items'>" + message + "<span class='chat-items__date'>"+ time +"</span></>");
+
 	}
 
 

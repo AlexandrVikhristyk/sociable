@@ -33,8 +33,6 @@ public class ValidController {
     @PostMapping("/log")
     public void log(@RequestBody CustomUser user){
         var a = userService.findByUsername(user.getUsername());
-        System.out.println("!!!!!!!!!!!!!!!!!!!!" + a.getHashPass());
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + user.getHashPass());
         userService.loginOfUser(user.getUsername(),user.getHashPass());
     }
 }
