@@ -56,6 +56,27 @@ input::placeholder {
   color: #ccc;
 }
 
+.google {
+  margin-top: 35px;
+  display: flex;
+
+  & img {
+    width: 20px;
+  }
+
+  & span {
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.1rem;
+    color: #ccc;
+    transition: color 0.2s ease-in-out;
+    margin-top: 5px;
+  } 
+
+  & div {
+   margin-left: 5px;
+  }
+}
+
 /**
  * Bounce to the left side
  */
@@ -253,9 +274,13 @@ input::placeholder {
 }
 .user_options-forms .forms_buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between !important;
   align-items: center;
   margin-top: 35px;
+
+  & .google {
+    margin-top: 0px;
+  }
 }
 .user_options-forms .forms_buttons-forgot {
   font-family: "Montserrat", sans-serif;
