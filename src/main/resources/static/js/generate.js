@@ -30,6 +30,9 @@ chat.createdCallback = function() {
 		sendName(crInput.value);
 		console.log("SEND SOCKED");
 	});
+	crInput.addEventListener("keyup", (event) => {
+		if(event.keyCode == 13) sendName(crInput.value);
+	});
 
 	crChatBlock.append(crInput);
 	crChatBlock.append(crBtn);
