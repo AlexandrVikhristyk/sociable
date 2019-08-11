@@ -1,21 +1,14 @@
 * {
   margin: 0;
-  padding: 0; }
-
-.preloader {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  z-index: 1;
-  background-color: #fff; }
+  padding: 0;
+}
 
 .form {
   width: 60%;
   margin: auto;
-  padding: 50px 0px; }
+  padding: 50px 0px;
+  display: none;
+}
 
 list-component {
   display: -webkit-flex;
@@ -24,154 +17,38 @@ list-component {
   display: -o-flex;
   display: flex;
   justify-content: center;
-  align-items: center; }
-  list-component ul {
-    padding: 10px;
-    width: 50%; }
-  list-component ul li {
-    margin-top: 10px;
-    display: -webkit-flex !important;
-    display: -moz-flex !important;
-    display: -ms-flex !important;
-    display: -o-flex !important;
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center; }
-    list-component ul li .form-control {
-      width: 75%; }
-  list-component ul li button {
-    margin-left: 10px;
-    border: 0;
-    padding: 5px;
-    border-radius: 4px;
-    color: white; }
-  list-component .buttonUpdate {
-    background-color: #1de9b6; }
-  list-component ul li button:last-child {
-    background-color: #f44336; }
-
-/* /////////////// Preloader ////////////////// */
-.cssload-preloader {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  z-index: 10; }
-
-.cssload-preloader > .cssload-preloader-box {
-  position: absolute;
-  height: 29px;
-  top: 50%;
-  left: 50%;
-  margin: -15px 0 0 -146px;
-  perspective: 195px;
-  -o-perspective: 195px;
-  -ms-perspective: 195px;
-  -webkit-perspective: 195px;
-  -moz-perspective: 195px; }
-
-.cssload-preloader .cssload-preloader-box > div {
-  position: relative;
-  width: 29px;
-  height: 29px;
-  background: #cccccc;
-  float: left;
-  text-align: center;
-  line-height: 29px;
-  font-family: Verdana;
-  font-size: 19px;
-  color: white; }
-
-.cssload-preloader .cssload-preloader-box > div:nth-child(1) {
-  background: #3366ff;
-  margin-right: 15px;
-  animation: cssload-movement 690ms ease 0ms infinite alternate;
-  -o-animation: cssload-movement 690ms ease 0ms infinite alternate;
-  -ms-animation: cssload-movement 690ms ease 0ms infinite alternate;
-  -webkit-animation: cssload-movement 690ms ease 0ms infinite alternate;
-  -moz-animation: cssload-movement 690ms ease 0ms infinite alternate; }
-
-.cssload-preloader .cssload-preloader-box > div:nth-child(2) {
-  background: #3366ff;
-  margin-right: 15px;
-  animation: cssload-movement 690ms ease 86.25ms infinite alternate;
-  -o-animation: cssload-movement 690ms ease 86.25ms infinite alternate;
-  -ms-animation: cssload-movement 690ms ease 86.25ms infinite alternate;
-  -webkit-animation: cssload-movement 690ms ease 86.25ms infinite alternate;
-  -moz-animation: cssload-movement 690ms ease 86.25ms infinite alternate; }
-
-.cssload-preloader .cssload-preloader-box > div:nth-child(3) {
-  background: #3366ff;
-  margin-right: 15px;
-  animation: cssload-movement 690ms ease 172.5ms infinite alternate;
-  -o-animation: cssload-movement 690ms ease 172.5ms infinite alternate;
-  -ms-animation: cssload-movement 690ms ease 172.5ms infinite alternate;
-  -webkit-animation: cssload-movement 690ms ease 172.5ms infinite alternate;
-  -moz-animation: cssload-movement 690ms ease 172.5ms infinite alternate; }
-
-.cssload-preloader .cssload-preloader-box > div:nth-child(4) {
-  background: #3366ff;
-  margin-right: 15px;
-  animation: cssload-movement 690ms ease 258.75ms infinite alternate;
-  -o-animation: cssload-movement 690ms ease 258.75ms infinite alternate;
-  -ms-animation: cssload-movement 690ms ease 258.75ms infinite alternate;
-  -webkit-animation: cssload-movement 690ms ease 258.75ms infinite alternate;
-  -moz-animation: cssload-movement 690ms ease 258.75ms infinite alternate; }
-
-.cssload-preloader .cssload-preloader-box > div:nth-child(5) {
-  background: #3366ff;
-  margin-right: 15px;
-  animation: cssload-movement 690ms ease 345ms infinite alternate;
-  -o-animation: cssload-movement 690ms ease 345ms infinite alternate;
-  -ms-animation: cssload-movement 690ms ease 345ms infinite alternate;
-  -webkit-animation: cssload-movement 690ms ease 345ms infinite alternate;
-  -moz-animation: cssload-movement 690ms ease 345ms infinite alternate; }
-
-.cssload-preloader .cssload-preloader-box > div:nth-child(6) {
-  background: #3366ff;
-  margin-right: 15px;
-  animation: cssload-movement 690ms ease 431.25ms infinite alternate;
-  -o-animation: cssload-movement 690ms ease 431.25ms infinite alternate;
-  -ms-animation: cssload-movement 690ms ease 431.25ms infinite alternate;
-  -webkit-animation: cssload-movement 690ms ease 431.25ms infinite alternate;
-  -moz-animation: cssload-movement 690ms ease 431.25ms infinite alternate; }
-
-.cssload-preloader .cssload-preloader-box > div:nth-child(7) {
-  background: #3366ff;
-  margin-right: 15px;
-  animation: cssload-movement 690ms ease 517.5ms infinite alternate;
-  -o-animation: cssload-movement 690ms ease 517.5ms infinite alternate;
-  -ms-animation: cssload-movement 690ms ease 517.5ms infinite alternate;
-  -webkit-animation: cssload-movement 690ms ease 517.5ms infinite alternate;
-  -moz-animation: cssload-movement 690ms ease 517.5ms infinite alternate; }
-
-.cssload-preloader .cssload-preloader-box > div:nth-child(8) {
-  background: #3366ff;
-  margin-right: 15px;
-  animation: cssload-movement 690ms ease 603.75ms infinite alternate;
-  -o-animation: cssload-movement 690ms ease 603.75ms infinite alternate;
-  -ms-animation: cssload-movement 690ms ease 603.75ms infinite alternate;
-  -webkit-animation: cssload-movement 690ms ease 603.75ms infinite alternate;
-  -moz-animation: cssload-movement 690ms ease 603.75ms infinite alternate; }
-
-.cssload-preloader .cssload-preloader-box > div:nth-child(9) {
-  background: #3366ff;
-  margin-right: 15px;
-  animation: cssload-movement 690ms ease 690ms infinite alternate;
-  -o-animation: cssload-movement 690ms ease 690ms infinite alternate;
-  -ms-animation: cssload-movement 690ms ease 690ms infinite alternate;
-  -webkit-animation: cssload-movement 690ms ease 690ms infinite alternate;
-  -moz-animation: cssload-movement 690ms ease 690ms infinite alternate; }
-
-.cssload-preloader .cssload-preloader-box > div:nth-child(10) {
-  background: #3366ff;
-  margin-right: 15px;
-  animation: cssload-movement 690ms ease 776.25ms infinite alternate;
-  -o-animation: cssload-movement 690ms ease 776.25ms infinite alternate;
-  -ms-animation: cssload-movement 690ms ease 776.25ms infinite alternate;
-  -webkit-animation: cssload-movement 690ms ease 776.25ms infinite alternate;
-  -moz-animation: cssload-movement 690ms ease 776.25ms infinite alternate; }
+  align-items: center;
+}
+list-component ul {
+  padding: 10px;
+  width: 50%;
+}
+list-component ul li {
+  margin-top: 10px;
+  display: -webkit-flex !important;
+  display: -moz-flex !important;
+  display: -ms-flex !important;
+  display: -o-flex !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center;
+}
+list-component ul li .form-control {
+  width: 75%;
+}
+list-component ul li button {
+  margin-left: 10px;
+  border: 0;
+  padding: 5px;
+  border-radius: 4px;
+  color: white;
+}
+list-component .buttonUpdate {
+  background-color: #1de9b6;
+}
+list-component ul li button:last-child {
+  background-color: #f44336;
+}
 
 .chat_wrapper {
   width: 50px;
@@ -190,27 +67,36 @@ list-component {
   align-items: center;
   cursor: pointer;
   transform: scale(0.8);
-  transition: all .2s;
-  animation: pulse 10s infinite; }
-  .chat_wrapper img {
-    width: 30px;
-    z-index: 2; }
-  .chat_wrapper:hover {
-    transform: scale(1); }
+  transition: all 0.2s;
+  animation: pulse 10s infinite;
+}
+
+.chat_wrapper img {
+  width: 30px;
+  z-index: 2;
+}
+
+.chat_wrapper:hover {
+  transform: scale(1);
+}
 
 @keyframes pulse {
   0% {
-    transform: scale(0.8); }
+    transform: scale(0.8);
+  }
   50% {
-    transform: scale(0.9); }
+    transform: scale(0.9);
+  }
   100% {
-    transform: scale(0.8); } }
+    transform: scale(0.8);
+  }
+}
 .chat_wrapper__block {
   z-index: 2;
   background-color: #fff;
   background-clip: padding-box;
   /*border: 1px solid rgba(0,0,0,.2);*/
-  border-radius: .4rem;
+  border-radius: 0.4rem;
   height: 500px;
   width: 300px;
   /*transform: translateY(10px);*/
@@ -218,77 +104,109 @@ list-component {
   right: 100px;
   opacity: 0;
   position: fixed;
-  transition: all ease-in-out .2s; }
-  .chat_wrapper__block.chat_wrapper__block__open {
-    /*transform: translateY(-10px);*/
-    bottom: 20px;
-    opacity: 1; }
-  .chat_wrapper__block .spinner-border.text-danger {
-    position: absolute;
-    top: 45%;
-    left: 45%; }
-  .chat_wrapper__block .form-control {
-    width: 64%;
-    display: initial !important;
-    }
-  .chat_wrapper__block .btn.btn-danger {
-    display: initial !important;
-    vertical-align: baseline; }
-  .chat_wrapper__block .chat-items {
-    margin: 10px 5px;
-    padding: 5px 15px;
-    font-family: 14px;
-    width: max-content;
-    max-width: 60%;
-    color: #26383c;
-    background: #d4f1fe;
-    border-radius: 20px;
-    position: relative;
-    }
-  .chat_wrapper__block .chat-items .chat-items__date{
-    position: absolute;
-    bottom: 0;
-    right: -30px;
-    font-size: 11px;
-  }
+  transition: all ease-in-out 0.2s;
+}
 
-@keyframes cssload-movement {
-  from {
-    transform: scale(1) translateY(0px) rotateX(0deg);
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
-  to {
-    transform: scale(1.5) translateY(-24px) rotateX(45deg);
-    box-shadow: 0 24px 39px rgba(0, 0, 0, 0.4);
-    background: #3399FF; } }
-@-o-keyframes cssload-movement {
-  from {
-    -o-transform: scale(1) translateY(0px) rotateX(0deg);
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
-  to {
-    -o-transform: scale(1.5) translateY(-24px) rotateX(45deg);
-    box-shadow: 0 24px 39px rgba(0, 0, 0, 0.4);
-    background: #3399FF; } }
-@-ms-keyframes cssload-movement {
-  from {
-    -ms-transform: scale(1) translateY(0px) rotateX(0deg);
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
-  to {
-    -ms-transform: scale(1.5) translateY(-24px) rotateX(45deg);
-    box-shadow: 0 24px 39px rgba(0, 0, 0, 0.4);
-    background: #3399FF; } }
-@-webkit-keyframes cssload-movement {
-  from {
-    -webkit-transform: scale(1) translateY(0px) rotateX(0deg);
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
-  to {
-    -webkit-transform: scale(1.5) translateY(-24px) rotateX(45deg);
-    box-shadow: 0 24px 39px rgba(0, 0, 0, 0.4);
-    background: #3399FF; } }
-@-moz-keyframes cssload-movement {
-  from {
-    -moz-transform: scale(1) translateY(0px) rotateX(0deg);
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0); }
-  to {
-    -moz-transform: scale(1.5) translateY(-24px) rotateX(45deg);
-    box-shadow: 0 24px 39px rgba(0, 0, 0, 0.4);
-    background: #3399FF; } }
+.chat_wrapper__block.chat_wrapper__block__open {
+  /*transform: translateY(-10px);*/
+  bottom: 20px;
+  opacity: 1;
+}
+
+.chat_wrapper__block .spinner-border.text-danger {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+}
+
+.chat_wrapper__block .form-control {
+  width: 64%;
+  display: initial !important;
+}
+
+.chat_wrapper__block .btn.btn-danger {
+  display: initial !important;
+  vertical-align: baseline;
+}
+
+.chat_wrapper__block .chat-items {
+  margin: 10px 5px;
+  padding: 5px 15px;
+  font-family: 14px;
+  width: max-content;
+  max-width: 60%;
+  color: #26383c;
+  background: #d4f1fe;
+  border-radius: 20px;
+  position: relative;
+}
+
+.chat_wrapper__block .chat-items .chat-items__date {
+  position: absolute;
+  bottom: 0;
+  right: -30px;
+  font-size: 11px;
+}
+
+/* /////////////// Preloader ////////////////// */
+#container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  background-color: #fff;
+}
+
+.bubbles {
+  margin-top: 50px;
+  position: relative;
+}
+
+.bubble {
+  display: inline-block;
+  padding: 0px 5px;
+}
+.bubble:nth-of-type(1) .circle {
+  animation-delay: 0.1s;
+}
+.bubble:nth-of-type(2) .circle {
+  animation-delay: 0.2s;
+}
+.bubble:nth-of-type(3) .circle {
+  animation-delay: 0.3s;
+}
+.bubble:nth-of-type(4) .circle {
+  animation-delay: 0.4s;
+}
+.bubble:nth-of-type(5) .circle {
+  animation-delay: 0.5s;
+}
+.bubble:nth-of-type(6) .circle {
+  animation-delay: 0.6s;
+}
+.bubble:nth-of-type(7) .circle {
+  animation-delay: 0.7s;
+}
+.bubble:nth-of-type(8) .circle {
+  animation-delay: 0.8s;
+}
+.bubble:nth-of-type(9) .circle {
+  animation-delay: 0.9s;
+}
+.bubble:nth-of-type(10) .circle {
+  animation-delay: 1s;
+}
+
+.bubble .circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: red;
+  animation: pulse 1.5s infinite;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+}
+
+/*# sourceMappingURL=style.css.map */

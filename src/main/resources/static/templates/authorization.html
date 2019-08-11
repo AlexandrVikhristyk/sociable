@@ -47,16 +47,17 @@
 	        <form class="forms_form" name="registerForm">
 	          <fieldset class="forms_fieldset">
 	            <div class="forms_field">
-	              <input type="text" name="username" placeholder="Full Name" class="forms_field-input" required />
+	              <input type="text" name="username" placeholder="Username" class="forms_field-input" required />
 	            </div>
 	            <div class="forms_field">
 	              <input type="email" name="email" placeholder="Email" class="forms_field-input" required />
 	            </div>
-	            <div class="forms_field">
-	              <input type="password" name="hashPass" placeholder="Password" class="forms_field-input" required min="8" />
+	            <div class="forms_field" id="forms_error">
+	              <input type="password" name="hashPass" placeholder="Password" class="forms_field-input" required id="placeholder_error" />
+	              <span class="tooltip_error">Пароль має містити одну строкову букву(a-z), одну заглавну(A-Z), одну цифру і будь-який символ</span>
 	            </div>
 	          </fieldset>
-	          <div class="forms_buttons">
+	          <div class="forms_buttons cancel_margin">
 	          	<div class="google"><span>Enter with google: </span><div><a href="/login"><img src="../css/img/search.svg" alt="" class="googleClass"></a></div></div>
 	            <input type="submit" value="Sign up" class="forms_buttons-action">
 	          </div>

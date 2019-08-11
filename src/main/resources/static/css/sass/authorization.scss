@@ -243,9 +243,11 @@ input::placeholder {
   transition: transform 0.4s ease-in-out;
   transition: transform 0.4s ease-in-out, -webkit-transform 0.4s ease-in-out;
 }
+
 .user_options-forms .user_forms-login {
   transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
 }
+
 .user_options-forms .forms_title {
   margin-bottom: 45px;
   font-size: 1.5rem;
@@ -255,6 +257,7 @@ input::placeholder {
   color: #e8716d;
   letter-spacing: 0.1rem;
 }
+
 .user_options-forms .forms_field:not(:last-of-type) {
   margin-bottom: 20px;
 }
@@ -269,6 +272,29 @@ input::placeholder {
   letter-spacing: 0.1rem;
   transition: border-color 0.2s ease-in-out;
 }
+
+.placeholder_error ::placeholder {
+  color: red;
+}
+
+.placeholder_error {
+  border-color: red !important;
+}
+
+.forms_error:focus {
+  border-color: gray !important;
+}
+
+.tooltip_error {
+  color: red;
+  opacity: 0;
+  transition: opacity 1s linear;
+}
+
+.cancel_margin {
+  margin-top: 0px !important;
+}
+
 .user_options-forms .forms_field-input:focus {
   border-color: gray;
 }

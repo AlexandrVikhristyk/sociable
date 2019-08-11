@@ -47,6 +47,8 @@
 		let valueEmail = formRegist.elements.email;
 
 		formRegist.onsubmit = function() {
+			let strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*-_])(?=.{8,})");
+			if(strongRegex.test(valuePassword.value)) {
 				let obj = ({
 					username: valueLogin.value,
 					hashPass: valuePassword.value,
@@ -62,12 +64,19 @@
 				xhr.onload = function() {
 					if(xhr.status == 200) {
 						location.href = "/";
+						formRegist.reset();
 					} else {
 						alert(`Ошибка ${xhr.status}: ${xhr.statusText}`);
 					}
 				}
 		
-			return false;
+				return false;
+			} else {
+				document.getElementById("forms_error").classList.add("forms_error");
+				document.getElementById("placeholder_error").classList.add("placeholder_error");
+				document.querySelector(".tooltip_error").style.opacity = "1";
+				return false;
+			}
 		}
 
 		let googleClass = document.getElementsByClassName("googleClass");

@@ -279,6 +279,28 @@ input::placeholder {
   transition: border-color 0.2s ease-in-out;
 }
 
+.placeholder_error ::placeholder {
+  color: red;
+}
+
+.placeholder_error {
+  border-color: red !important;
+}
+
+.forms_error:focus {
+  border-color: gray !important;
+}
+
+.tooltip_error {
+  color: red;
+  opacity: 0;
+  transition: opacity 1s linear;
+}
+
+.cancel_margin {
+  margin-top: 0px !important;
+}
+
 .user_options-forms .forms_field-input:focus {
   border-color: gray;
 }

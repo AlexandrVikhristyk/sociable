@@ -8,7 +8,16 @@
 </head>
 <body>
 
-	<div class="container" id="container">
+	<form class="form" name="ourForm" onsubmit="return false" id="form">
+		<div class="input-group mb-3">
+		  <input type="text" name="val" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2">
+		  <div class="input-group-append">
+		    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
+		  </div>
+		</div>
+	</form>
+
+	<div id="container">
 	  <div class="bubbles">
 	    <div class="bubble">
 	      <div class="circle"></div>
@@ -42,15 +51,6 @@
 	    </div>
 	  </div>
 	</div>
-
-	<form class="form" name="ourForm" onsubmit="return false">
-		<div class="input-group mb-3">
-		  <input type="text" name="val" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2">
-		  <div class="input-group-append">
-		    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
-		  </div>
-		</div>
-	</form>
 
 	<div id="list-component__wrapper">
 		<list-component></list-component>
