@@ -33,6 +33,7 @@
 				xhr.onload = function() {
 					if(xhr.status == 200) {
 						location.href = "/";
+						localStorage.setItem('login', valLogin.value);
 					} else {
 						alert(`Ошибка ${xhr.status}: ${xhr.statusText}`);
 					}
@@ -64,6 +65,7 @@
 				xhr.onload = function() {
 					if(xhr.status == 200) {
 						location.href = "/";
+						localStorage.setItem('login', valueLogin.value);
 						formRegist.reset();
 					} else {
 						alert(`Ошибка ${xhr.status}: ${xhr.statusText}`);
