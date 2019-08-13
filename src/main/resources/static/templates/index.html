@@ -7,9 +7,23 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+	<div class="menu">
+		<div class="logo">
+			<img src="../css/img/Logo.png" alt="">
+		</div>	
 
-	<div class="user" id="user">
-		<img src="../css/img/user.png" alt="">
+		<div class="dropdown">
+		  <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    <div class="user" id="user">
+				<img src="../css/img/user.png" alt="">
+			</div>
+		  </button>
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		    <a class="dropdown-item" href="#"><img src="../css/img/settings.png" alt="">Settings</a>
+		    <a class="dropdown-item" href="/reg"><img src="../css/img/logout.png" alt="">Logout</a>
+		  </div>
+		</div>
+		
 	</div>
 
 	<form class="form" name="ourForm" onsubmit="return false" id="form">

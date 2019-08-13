@@ -3,15 +3,42 @@
 	padding: 0;
 }
 
+.menu {
+	width: 100%;
+	border-bottom: 1px solid #ced4da;
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 30px;
+
+	& .logo img {
+		width: 50px;
+	}
+}
+
 .user {
 	display: flex;
 	justify-content: flex-end;
-	margin: 30px 100px 0px 0px;
 	align-items: center;
+
 	& img {
 		width: 30px;
 		margin-right: 10px;
 	}
+}
+
+.dropdown-item img {
+	margin-right: 10px;
+	align-self: center;
+}
+
+.dropdown-menu {
+	width: 100%;
+}
+
+.btn-secondary {
+	color: gray !important;
+	background-color: white !important;
+	border-color: white !important;
 }
 
 .form {
