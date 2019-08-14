@@ -24,6 +24,29 @@
 		width: 30px;
 		margin-right: 10px;
 	}
+
+	& .dropdownArrow {
+		width: 12px;
+		margin-left: 10px;
+		margin-right: 0px !important;
+	}
+
+	& span {
+		display: flex;
+	}
+}
+
+.show .user .dropdownArrow {
+	transform: rotate(180deg);
+	transition: 1s;
+}
+
+.dropdown:hover {
+	-webkit-box-shadow: 5px 5px 5px 0px rgba(108,117,125,1);
+	-moz-box-shadow: 5px 5px 5px 0px rgba(108,117,125,1);
+	box-shadow: 5px 5px 5px 0px rgba(108,117,125,1);
+	transition: 1s;
+	border: 1px solid #6c757d;
 }
 
 .dropdown-item img {
